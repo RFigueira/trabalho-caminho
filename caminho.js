@@ -2,15 +2,13 @@
 const VALE_DIAGNOLA = false;
 let flag = false;
 
-    function aStar(posicaoInicial, posicaoFinal, obstaculos) {
-        
-        let flag = false;
+    function aStar(posicaoInicial, objetivo, obstaculos) {
+    
         let posicaoAtual = posicaoInicial;
         let possiveis = [];
         let caminho = [];
         let naoPermitidas = obstaculos;
         let index;
-      
         
         while(!flag) {
             console.log('--Nao permitidas--');
@@ -18,7 +16,7 @@ let flag = false;
             verificarPosicoesPossiveis(posicaoAtual, possiveis, naoPermitidas);
             console.log('--Possiveis--');
             console.log(possiveis);
-            index = melhorIndice(possiveis, posicaoFinal);
+            index = melhorIndice(possiveis, objetivo);
             console.log('andou para');
             console.log(possiveis[index]);
             caminho.push(posicaoAtual);
@@ -30,12 +28,12 @@ let flag = false;
                flag = true;
                break;
            }
-            if(posicaoAtual[0] == posicaoFinal[0] && posicaoAtual[1] == posicaoFinal[1]) {
+            if(posicaoAtual[0] == objetivo[0] && posicaoAtual[1] == objetivo[1]) {
                 flag = true;
             }
         }
         console.log('-----Caminho utilizado-----');
-        caminho.push(posicaoFinal);
+        caminho.push(objetivo);
         console.log(caminho);
     }
 
@@ -69,7 +67,6 @@ function verificarPosicoesPossiveis(posicaoAtual, possiveis, naoPermitidas) {
            let isValido = naoPermitidas.filter((item)=>
                  item[0] == pH && item[1] == pV 
            )
-           console.log(isValido);
            if(isValido.length == 0) {
                 possiveis.push([pH, pV]);
            }
