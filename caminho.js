@@ -1,5 +1,5 @@
 
-const VALE_DIAGNOLA = false;
+const VALE_DIAGONAL = false;
 let flag = false;
 
     function aStar(posicaoInicial, objetivo, obstaculos) {
@@ -60,7 +60,7 @@ let flag = false;
 function verificarPosicoesPossiveis(posicaoAtual, possiveis, naoPermitidas) {
     for (x = -1; x <= 1; x++) {
       for (y = -1; y <= 1; y++) {
-        if (!VALE_DIAGNOLA) {
+        if (!VALE_DIAGONAL) {
           if (Math.abs(x + y) == 1) {
             let pH = posicaoAtual[0] + x; // posicao horisontal
             let pV = posicaoAtual[1] + y; // posicao vertical   
