@@ -9,6 +9,7 @@ let flag = false;
         let caminho = [];
         let naoPermitidas = obstaculos;
         let index;
+        let indexAnterior;
         
         while(!flag) {
             console.log('--Nao permitidas--');
@@ -17,6 +18,12 @@ let flag = false;
             console.log('--Possiveis--');
             console.log(possiveis);
             index = melhorIndice(possiveis, objetivo);
+            if(index == indexAnterior) {
+               console.log('Deu xoxoh, ele ficou no mesmo lugar');
+               flag = true;
+               break;
+            }
+            indexAnterior = index;
             console.log('andou para');
             console.log(possiveis[index]);
             caminho.push(posicaoAtual);
@@ -67,7 +74,10 @@ function verificarPosicoesPossiveis(posicaoAtual, possiveis, naoPermitidas) {
            let isValido = naoPermitidas.filter((item)=>
                  item[0] == pH && item[1] == pV 
            )
-           if(isValido.length == 0) {
+           let isExiste = possiveis.filter((item)=>
+                 item[0] == pH && item[1] == pV 
+           )
+           if(isValido.length == 0 && isExiste.length == 0) {
                 possiveis.push([pH, pV]);
            }
           }
@@ -76,6 +86,6 @@ function verificarPosicoesPossiveis(posicaoAtual, possiveis, naoPermitidas) {
     }
   }
     
-aStar([2,3], [5,5], [[1,3], [3,3], [2,4]]);
+aStar([2,3], [5,5], [[1,3], [3,3], [2,4], [5,3], [4,3]]);
 
 
